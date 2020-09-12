@@ -1,6 +1,6 @@
 <template>
   <li class="item">
-    <span>{{item}}</span>
+    <span @click.stop="done" :class="{done:isDone}">{{item}}</span>
     <div class="item-buttons">
       <button @click="del">Delete</button>
     </div>
@@ -9,11 +9,18 @@
 
 <script>
 export default {
+  data() {
+    return { isDone: false };
+  },
   name: "item",
   props: ["item", "index"],
   methods: {
     del() {
       this.$emit("del", this.index);
+      this.isDone = false;
+    },
+    done() {
+      this.isDone = !this.isDone;
     },
   },
 };
@@ -23,6 +30,19 @@ export default {
 li {
   list-style: none;
 }
+
+span {
+  cursor: pointer;
+  flex: 1;
+  overflow-wrap: anywhere;
+  margin-right: 0.5rem;
+}
+
+.done {
+  text-decoration-line: line-through;
+  color: gray;
+}
+
 .item {
   display: flex;
   justify-content: space-between;

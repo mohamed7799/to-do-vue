@@ -21,7 +21,7 @@ export default {
   components: { Input, Item },
   name: "list",
   data() {
-    return { items: ["mohamed", "emad", "amr", "gala"] };
+    return { items: ["task 1", "task 2", "task 3", "task 4", "task 5"] };
   },
   methods: {
     addItem(item) {
